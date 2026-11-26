@@ -1,0 +1,8 @@
+method,label,f1_testingset,f1_fcd,f1_scd,mean_f1,params_M,source
+FFDN,FFDN (ECCV'24),86.0,92.0,81.0,86.33,140.0,"FFDN Table 1 (F, 2 decimals); params FFDN Table 5"
+DTD,DTD (CVPR'23),79.2,81.6,75.4,78.73,66.0,ADCD-Net Table 1
+ADCD-Net,ADCD-Net (ICCV'25),80.6,81.5,74.0,78.7,23.0,ADCD-Net Table 1
+Ours,DocROI-Former-QDCT (ours),78.14,81.5,72.25,77.3,43.939,reports/dtd_protocol/FINAL_RESULT_ALLTHREELOGGED_RESULT/summary.csv (run 20261119_113438_dtd_q75)
+CAT-Net,CAT-Net (IJCV'22),72.1,74.1,67.0,71.07,114.0,ADCD-Net Table 1
+TruFor,TruFor (CVPR'23),69.1,66.7,59.4,65.07,67.0,ADCD-Net Table 1
+MVSS-Net,MVSS-Net (ICCV'21),43.1,42.4,41.4,42.3,143.0,ADCD-Net Table 1

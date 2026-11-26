@@ -1,0 +1,56 @@
+[2026-11-16 18:21:58] Run dir: D:\shivendra pratap singh\docroi_former\reports\dtd_protocol\20261116_182158_raw_q75
+[2026-11-16 18:21:58] Device: cuda NVIDIA GeForce RTX 5080 | torch 2.11.0+cu128
+[2026-11-16 18:21:58] Args: {'checkpoint': 'D:\\shivendra pratap singh\\docroi_former\\checkpoints\\best_docroi_former_pguoctv3.pth', 'data_dir': 'D:\\shivendra pratap singh\\docroi_former\\data', 'pks_dir': 'D:\\shivendra pratap singh\\docroi_former\\data\\Doctamper\\dtd_official\\pks', 'datasets': 'TestingSet,FCD,SCD', 'protocol': 'raw', 'minq': 75, 'infer_size': 384, 'threshold': 0.5, 'batch_size': 16, 'workers': 4, 'max_samples': 0, 'out_root': 'D:\\shivendra pratap singh\\docroi_former\\reports\\dtd_protocol'}
+[2026-11-16 18:22:00] Checkpoint: D:\shivendra pratap singh\docroi_former\checkpoints\best_docroi_former_pguoctv3.pth (epoch 10) | missing keys 0 | unexpected keys 0
+[2026-11-16 18:22:00] ===== TestingSet: 30000 samples | protocol=raw minq=75 | infer_size=384 | batch=16 =====
+[2026-11-16 18:22:07]   [TestingSet] 16/30000 | P 90.01 R 85.86 F 87.89 IoU 89.27 | 6s elapsed
+[2026-11-16 18:22:19]   [TestingSet] 1616/30000 | P 82.40 R 79.64 F 81.00 IoU 82.97 | 18s elapsed
+[2026-11-16 18:22:39]   [TestingSet] 3216/30000 | P 82.29 R 79.71 F 80.98 IoU 82.56 | 39s elapsed
+[2026-11-16 18:22:59]   [TestingSet] 4816/30000 | P 82.14 R 79.68 F 80.89 IoU 82.38 | 58s elapsed
+[2026-11-16 18:23:12]   [TestingSet] 6416/30000 | P 81.94 R 79.25 F 80.57 IoU 82.23 | 71s elapsed
+[2026-11-16 18:23:37]   [TestingSet] 8016/30000 | P 82.05 R 79.41 F 80.71 IoU 82.39 | 96s elapsed
+[2026-11-16 18:24:02]   [TestingSet] 9616/30000 | P 81.86 R 79.28 F 80.55 IoU 82.32 | 122s elapsed
+[2026-11-16 18:24:27]   [TestingSet] 11216/30000 | P 82.06 R 79.47 F 80.74 IoU 82.53 | 147s elapsed
+[2026-11-16 18:24:51]   [TestingSet] 12816/30000 | P 82.06 R 79.53 F 80.77 IoU 82.55 | 170s elapsed
+[2026-11-16 18:25:13]   [TestingSet] 14416/30000 | P 81.90 R 79.34 F 80.60 IoU 82.43 | 193s elapsed
+[2026-11-16 18:25:36]   [TestingSet] 16016/30000 | P 81.96 R 79.37 F 80.65 IoU 82.54 | 216s elapsed
+[2026-11-16 18:25:59]   [TestingSet] 17616/30000 | P 82.01 R 79.47 F 80.72 IoU 82.60 | 239s elapsed
+[2026-11-16 18:26:22]   [TestingSet] 19216/30000 | P 81.97 R 79.43 F 80.68 IoU 82.51 | 262s elapsed
+[2026-11-16 18:26:46]   [TestingSet] 20816/30000 | P 82.03 R 79.50 F 80.74 IoU 82.48 | 285s elapsed
+[2026-11-16 18:27:09]   [TestingSet] 22416/30000 | P 82.10 R 79.58 F 80.82 IoU 82.51 | 309s elapsed
+[2026-11-16 18:27:32]   [TestingSet] 24016/30000 | P 82.11 R 79.58 F 80.82 IoU 82.48 | 331s elapsed
+[2026-11-16 18:27:46]   [TestingSet] 25616/30000 | P 82.12 R 79.61 F 80.84 IoU 82.52 | 346s elapsed
+[2026-11-16 18:27:57]   [TestingSet] 27216/30000 | P 82.15 R 79.62 F 80.87 IoU 82.55 | 357s elapsed
+[2026-11-16 18:28:16]   [TestingSet] 28816/30000 | P 82.16 R 79.61 F 80.86 IoU 82.47 | 375s elapsed
+[2026-11-16 18:28:34] ----- TestingSet RESULT (30000 samples, 393.7s) -----
+[2026-11-16 18:28:34]   Precision 82.22 | Recall 79.64 | F1 (DTD) 80.91 | IoU (tampered) 82.52 | mIoU 91.14
+[2026-11-16 18:28:34]   Legacy per-image mean: F1 79.50 | IoU 73.41 | GPU 11.35 ms/img (batch 16)
+[2026-11-16 18:28:34] ===== FCD: 2000 samples | protocol=raw minq=75 | infer_size=384 | batch=16 =====
+[2026-11-16 18:28:38]   [FCD] 16/2000 | P 46.75 R 47.14 F 46.94 IoU 20.66 | 3s elapsed
+[2026-11-16 18:28:53]   [FCD] 1616/2000 | P 65.87 R 58.09 F 61.74 IoU 37.16 | 19s elapsed
+[2026-11-16 18:29:00] ----- FCD RESULT (2000 samples, 25.6s) -----
+[2026-11-16 18:29:00]   Precision 65.97 | Recall 58.08 | F1 (DTD) 61.77 | IoU (tampered) 37.04 | mIoU 66.84
+[2026-11-16 18:29:00]   Legacy per-image mean: F1 58.35 | IoU 52.49 | GPU 9.66 ms/img (batch 16)
+[2026-11-16 18:29:00] ===== SCD: 18000 samples | protocol=raw minq=75 | infer_size=384 | batch=16 =====
+[2026-11-16 18:29:03]   [SCD] 16/18000 | P 74.59 R 63.17 F 68.41 IoU 51.82 | 4s elapsed
+[2026-11-16 18:29:29]   [SCD] 1616/18000 | P 69.43 R 71.68 F 70.54 IoU 59.60 | 29s elapsed
+[2026-11-16 18:29:54]   [SCD] 3216/18000 | P 69.21 R 71.79 F 70.48 IoU 59.80 | 54s elapsed
+[2026-11-16 18:30:19]   [SCD] 4816/18000 | P 69.12 R 71.47 F 70.28 IoU 60.13 | 79s elapsed
+[2026-11-16 18:30:44]   [SCD] 6416/18000 | P 69.05 R 71.52 F 70.26 IoU 60.23 | 105s elapsed
+[2026-11-16 18:31:10]   [SCD] 8016/18000 | P 68.92 R 71.17 F 70.02 IoU 59.42 | 130s elapsed
+[2026-11-16 18:31:35]   [SCD] 9616/18000 | P 68.93 R 71.06 F 69.98 IoU 59.54 | 155s elapsed
+[2026-11-16 18:32:00]   [SCD] 11216/18000 | P 68.92 R 71.07 F 69.98 IoU 59.69 | 180s elapsed
+[2026-11-16 18:32:25]   [SCD] 12816/18000 | P 68.91 R 71.19 F 70.03 IoU 59.66 | 205s elapsed
+[2026-11-16 18:32:50]   [SCD] 14416/18000 | P 68.91 R 71.15 F 70.01 IoU 59.58 | 230s elapsed
+[2026-11-16 18:33:15]   [SCD] 16016/18000 | P 68.95 R 71.20 F 70.06 IoU 59.67 | 256s elapsed
+[2026-11-16 18:33:41]   [SCD] 17616/18000 | P 68.94 R 71.28 F 70.09 IoU 59.66 | 281s elapsed
+[2026-11-16 18:33:48] ----- SCD RESULT (18000 samples, 287.8s) -----
+[2026-11-16 18:33:48]   Precision 68.93 | Recall 71.28 | F1 (DTD) 70.08 | IoU (tampered) 59.62 | mIoU 79.59
+[2026-11-16 18:33:48]   Legacy per-image mean: F1 67.12 | IoU 57.61 | GPU 13.65 ms/img (batch 16)
+[2026-11-16 18:33:48] ================================================================================================
+[2026-11-16 18:33:48] Split             N       P       R      F1     IoU    mIoU   imgF1  imgIoU
+[2026-11-16 18:33:48] TestingSet    30000   82.22   79.64   80.91   82.52   91.14   79.50   73.41
+[2026-11-16 18:33:48] FCD            2000   65.97   58.08   61.77   37.04   66.84   58.35   52.49
+[2026-11-16 18:33:48] SCD           18000   68.93   71.28   70.08   59.62   79.59   67.12   57.61
+[2026-11-16 18:33:48] ================================================================================================
+[2026-11-16 18:33:48] Saved: D:\shivendra pratap singh\docroi_former\reports\dtd_protocol\20261116_182158_raw_q75\summary.json

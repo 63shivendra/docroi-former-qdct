@@ -1,0 +1,62 @@
+{
+  "run_id": "20261116_181448_dtd_q75",
+  "args": {
+    "checkpoint": "D:\\shivendra pratap singh\\docroi_former\\checkpoints\\best_docroi_former_pguoctv3.pth",
+    "data_dir": "D:\\shivendra pratap singh\\docroi_former\\data",
+    "pks_dir": "D:\\shivendra pratap singh\\docroi_former\\data\\Doctamper\\dtd_official\\pks",
+    "datasets": "TestingSet,FCD,SCD",
+    "protocol": "dtd",
+    "minq": 75,
+    "infer_size": 384,
+    "threshold": 0.5,
+    "batch_size": 16,
+    "workers": 4,
+    "max_samples": 0,
+    "out_root": "D:\\shivendra pratap singh\\docroi_former\\reports\\dtd_protocol"
+  },
+  "checkpoint": "D:\\shivendra pratap singh\\docroi_former\\checkpoints\\best_docroi_former_pguoctv3.pth",
+  "splits": {
+    "TestingSet": {
+      "samples": 30000,
+      "precision": 61.49,
+      "recall": 52.94,
+      "f1_dtd": 56.9,
+      "iou_tampered": 57.43,
+      "miou_2class": 78.41,
+      "legacy_mean_image_f1": 53.97,
+      "legacy_mean_image_iou": 47.23,
+      "split": "TestingSet",
+      "wall_time_s": 438.7,
+      "gpu_ms_per_image": 12.43,
+      "per_sample_csv": "D:\\shivendra pratap singh\\docroi_former\\reports\\dtd_protocol\\20261116_181448_dtd_q75\\TestingSet_per_sample.csv"
+    },
+    "FCD": {
+      "samples": 2000,
+      "precision": 62.49,
+      "recall": 45.79,
+      "f1_dtd": 52.85,
+      "iou_tampered": 27.4,
+      "miou_2class": 61.76,
+      "legacy_mean_image_f1": 48.0,
+      "legacy_mean_image_iou": 40.21,
+      "split": "FCD",
+      "wall_time_s": 45.5,
+      "gpu_ms_per_image": 13.84,
+      "per_sample_csv": "D:\\shivendra pratap singh\\docroi_former\\reports\\dtd_protocol\\20261116_181448_dtd_q75\\FCD_per_sample.csv"
+    },
+    "SCD": {
+      "samples": 18000,
+      "precision": 52.45,
+      "recall": 47.83,
+      "f1_dtd": 50.04,
+      "iou_tampered": 38.06,
+      "miou_2class": 68.68,
+      "legacy_mean_image_f1": 46.18,
+      "legacy_mean_image_iou": 38.05,
+      "split": "SCD",
+      "wall_time_s": 283.8,
+      "gpu_ms_per_image": 12.92,
+      "per_sample_csv": "D:\\shivendra pratap singh\\docroi_former\\reports\\dtd_protocol\\20261116_181448_dtd_q75\\SCD_per_sample.csv"
+    }
+  }
+}

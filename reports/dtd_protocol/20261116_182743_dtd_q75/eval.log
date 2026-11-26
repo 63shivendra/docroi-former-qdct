@@ -1,0 +1,16 @@
+[2026-11-16 18:27:43] Run dir: D:\shivendra pratap singh\docroi_former\reports\dtd_protocol\20261116_182743_dtd_q75
+[2026-11-16 18:27:43] Device: cuda NVIDIA GeForce RTX 5080 | torch 2.11.0+cu128
+[2026-11-16 18:27:43] Args: {'checkpoint': 'D:\\shivendra pratap singh\\docroi_former\\checkpoints\\best_docroi_former_pguoctv3.pth', 'data_dir': 'D:\\shivendra pratap singh\\docroi_former\\data', 'pks_dir': 'D:\\shivendra pratap singh\\docroi_former\\data\\Doctamper\\dtd_official\\pks', 'datasets': 'FCD', 'protocol': 'dtd', 'minq': 75, 'infer_size': 384, 'threshold': 0.5, 'batch_size': 16, 'workers': 4, 'max_samples': 0, 'out_root': 'D:\\shivendra pratap singh\\docroi_former\\reports\\dtd_protocol'}
+[2026-11-16 18:27:47] Checkpoint: D:\shivendra pratap singh\docroi_former\checkpoints\best_docroi_former_pguoctv3.pth (epoch 10) | missing keys 0 | unexpected keys 0
+[2026-11-16 18:27:47] Quality table: D:\shivendra pratap singh\docroi_former\data\Doctamper\dtd_official\pks\DocTamperV1-FCD_75.pk (2000 entries)
+[2026-11-16 18:27:47] ===== FCD: 2000 samples | protocol=dtd minq=75 | infer_size=384 | batch=16 =====
+[2026-11-16 18:28:02]   [FCD] 16/2000 | P 53.36 R 38.98 F 45.05 IoU 18.54 | 15s elapsed
+[2026-11-16 18:28:26]   [FCD] 1616/2000 | P 62.53 R 46.10 F 53.07 IoU 27.64 | 39s elapsed
+[2026-11-16 18:28:33] ----- FCD RESULT (2000 samples, 46.0s) -----
+[2026-11-16 18:28:33]   Precision 62.49 | Recall 45.79 | F1 (DTD) 52.85 | IoU (tampered) 27.40 | mIoU 61.76
+[2026-11-16 18:28:33]   Legacy per-image mean: F1 48.00 | IoU 40.21 | GPU 14.19 ms/img (batch 16)
+[2026-11-16 18:28:33] ================================================================================================
+[2026-11-16 18:28:33] Split             N       P       R      F1     IoU    mIoU   imgF1  imgIoU
+[2026-11-16 18:28:33] FCD            2000   62.49   45.79   52.85   27.40   61.76   48.00   40.21
+[2026-11-16 18:28:33] ================================================================================================
+[2026-11-16 18:28:33] Saved: D:\shivendra pratap singh\docroi_former\reports\dtd_protocol\20261116_182743_dtd_q75\summary.json

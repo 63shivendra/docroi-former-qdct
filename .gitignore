@@ -1,0 +1,28 @@
+# Datasets (DocTamper LMDBs and DTD quality tables are obtained from their authors)
+data/
+*.mdb
+*.lmdb
+*.pk
+
+# Model weights and training runs
+runs/
+checkpoints/
+*.pth
+*.pt
+
+# Python / editors / OS
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# LaTeX build by-products (paper/ only; reports/**/eval.log are evaluation records and stay tracked)
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.synctex.gz

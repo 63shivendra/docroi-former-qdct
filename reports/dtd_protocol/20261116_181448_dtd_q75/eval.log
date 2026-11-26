@@ -1,0 +1,59 @@
+[2026-11-16 18:14:48] Run dir: D:\shivendra pratap singh\docroi_former\reports\dtd_protocol\20261116_181448_dtd_q75
+[2026-11-16 18:14:48] Device: cuda NVIDIA GeForce RTX 5080 | torch 2.11.0+cu128
+[2026-11-16 18:14:48] Args: {'checkpoint': 'D:\\shivendra pratap singh\\docroi_former\\checkpoints\\best_docroi_former_pguoctv3.pth', 'data_dir': 'D:\\shivendra pratap singh\\docroi_former\\data', 'pks_dir': 'D:\\shivendra pratap singh\\docroi_former\\data\\Doctamper\\dtd_official\\pks', 'datasets': 'TestingSet,FCD,SCD', 'protocol': 'dtd', 'minq': 75, 'infer_size': 384, 'threshold': 0.5, 'batch_size': 16, 'workers': 4, 'max_samples': 0, 'out_root': 'D:\\shivendra pratap singh\\docroi_former\\reports\\dtd_protocol'}
+[2026-11-16 18:14:51] Checkpoint: D:\shivendra pratap singh\docroi_former\checkpoints\best_docroi_former_pguoctv3.pth (epoch 10) | missing keys 0 | unexpected keys 0
+[2026-11-16 18:14:51] Quality table: D:\shivendra pratap singh\docroi_former\data\Doctamper\dtd_official\pks\DocTamperV1-TestingSet_75.pk (30000 entries)
+[2026-11-16 18:14:51] ===== TestingSet: 30000 samples | protocol=dtd minq=75 | infer_size=384 | batch=16 =====
+[2026-11-16 18:15:08]   [TestingSet] 16/30000 | P 77.90 R 67.96 F 72.59 IoU 66.55 | 16s elapsed
+[2026-11-16 18:15:33]   [TestingSet] 1616/30000 | P 62.46 R 54.29 F 58.09 IoU 57.76 | 42s elapsed
+[2026-11-16 18:15:59]   [TestingSet] 3216/30000 | P 61.92 R 53.57 F 57.44 IoU 57.74 | 68s elapsed
+[2026-11-16 18:16:18]   [TestingSet] 4816/30000 | P 61.73 R 53.52 F 57.33 IoU 57.91 | 87s elapsed
+[2026-11-16 18:16:32]   [TestingSet] 6416/30000 | P 61.40 R 52.91 F 56.84 IoU 57.52 | 101s elapsed
+[2026-11-16 18:16:57]   [TestingSet] 8016/30000 | P 61.45 R 53.09 F 56.97 IoU 57.99 | 126s elapsed
+[2026-11-16 18:17:09]   [TestingSet] 9616/30000 | P 61.41 R 53.09 F 56.95 IoU 58.13 | 138s elapsed
+[2026-11-16 18:17:30]   [TestingSet] 11216/30000 | P 61.33 R 53.15 F 56.95 IoU 58.08 | 159s elapsed
+[2026-11-16 18:17:56]   [TestingSet] 12816/30000 | P 61.39 R 53.12 F 56.96 IoU 58.00 | 185s elapsed
+[2026-11-16 18:18:22]   [TestingSet] 14416/30000 | P 61.21 R 52.98 F 56.80 IoU 57.86 | 210s elapsed
+[2026-11-16 18:18:47]   [TestingSet] 16016/30000 | P 61.48 R 53.04 F 56.95 IoU 57.95 | 236s elapsed
+[2026-11-16 18:19:13]   [TestingSet] 17616/30000 | P 61.45 R 52.95 F 56.88 IoU 57.79 | 261s elapsed
+[2026-11-16 18:19:38]   [TestingSet] 19216/30000 | P 61.45 R 52.91 F 56.86 IoU 57.79 | 287s elapsed
+[2026-11-16 18:20:02]   [TestingSet] 20816/30000 | P 61.44 R 52.94 F 56.87 IoU 57.73 | 311s elapsed
+[2026-11-16 18:20:25]   [TestingSet] 22416/30000 | P 61.48 R 53.00 F 56.93 IoU 57.64 | 334s elapsed
+[2026-11-16 18:20:51]   [TestingSet] 24016/30000 | P 61.49 R 52.96 F 56.91 IoU 57.63 | 359s elapsed
+[2026-11-16 18:21:16]   [TestingSet] 25616/30000 | P 61.48 R 52.99 F 56.92 IoU 57.64 | 385s elapsed
+[2026-11-16 18:21:42]   [TestingSet] 27216/30000 | P 61.55 R 53.01 F 56.96 IoU 57.64 | 411s elapsed
+[2026-11-16 18:21:59]   [TestingSet] 28816/30000 | P 61.49 R 52.93 F 56.89 IoU 57.48 | 428s elapsed
+[2026-11-16 18:22:10] ----- TestingSet RESULT (30000 samples, 438.7s) -----
+[2026-11-16 18:22:10]   Precision 61.49 | Recall 52.94 | F1 (DTD) 56.90 | IoU (tampered) 57.43 | mIoU 78.41
+[2026-11-16 18:22:10]   Legacy per-image mean: F1 53.97 | IoU 47.23 | GPU 12.43 ms/img (batch 16)
+[2026-11-16 18:22:10] Quality table: D:\shivendra pratap singh\docroi_former\data\Doctamper\dtd_official\pks\DocTamperV1-FCD_75.pk (2000 entries)
+[2026-11-16 18:22:10] ===== FCD: 2000 samples | protocol=dtd minq=75 | infer_size=384 | batch=16 =====
+[2026-11-16 18:22:23]   [FCD] 16/2000 | P 53.36 R 38.98 F 45.05 IoU 18.54 | 13s elapsed
+[2026-11-16 18:22:49]   [FCD] 1616/2000 | P 62.53 R 46.10 F 53.07 IoU 27.64 | 39s elapsed
+[2026-11-16 18:22:55] ----- FCD RESULT (2000 samples, 45.5s) -----
+[2026-11-16 18:22:55]   Precision 62.49 | Recall 45.79 | F1 (DTD) 52.85 | IoU (tampered) 27.40 | mIoU 61.76
+[2026-11-16 18:22:55]   Legacy per-image mean: F1 48.00 | IoU 40.21 | GPU 13.84 ms/img (batch 16)
+[2026-11-16 18:22:55] Quality table: D:\shivendra pratap singh\docroi_former\data\Doctamper\dtd_official\pks\DocTamperV1-SCD_75.pk (18000 entries)
+[2026-11-16 18:22:55] ===== SCD: 18000 samples | protocol=dtd minq=75 | infer_size=384 | batch=16 =====
+[2026-11-16 18:23:08]   [SCD] 16/18000 | P 50.76 R 28.25 F 36.30 IoU 28.01 | 13s elapsed
+[2026-11-16 18:23:34]   [SCD] 1616/18000 | P 52.92 R 49.02 F 50.89 IoU 38.06 | 39s elapsed
+[2026-11-16 18:24:00]   [SCD] 3216/18000 | P 52.98 R 49.41 F 51.13 IoU 38.27 | 64s elapsed
+[2026-11-16 18:24:25]   [SCD] 4816/18000 | P 53.06 R 49.21 F 51.07 IoU 38.97 | 90s elapsed
+[2026-11-16 18:24:49]   [SCD] 6416/18000 | P 52.88 R 49.06 F 50.90 IoU 38.78 | 113s elapsed
+[2026-11-16 18:25:12]   [SCD] 8016/18000 | P 52.59 R 48.62 F 50.53 IoU 38.22 | 137s elapsed
+[2026-11-16 18:25:36]   [SCD] 9616/18000 | P 52.36 R 48.22 F 50.20 IoU 38.33 | 160s elapsed
+[2026-11-16 18:25:59]   [SCD] 11216/18000 | P 52.32 R 47.99 F 50.06 IoU 38.35 | 184s elapsed
+[2026-11-16 18:26:22]   [SCD] 12816/18000 | P 52.50 R 48.17 F 50.24 IoU 38.24 | 207s elapsed
+[2026-11-16 18:26:46]   [SCD] 14416/18000 | P 52.46 R 48.08 F 50.17 IoU 38.12 | 230s elapsed
+[2026-11-16 18:27:09]   [SCD] 16016/18000 | P 52.42 R 47.90 F 50.06 IoU 38.05 | 254s elapsed
+[2026-11-16 18:27:33]   [SCD] 17616/18000 | P 52.45 R 47.82 F 50.03 IoU 38.10 | 277s elapsed
+[2026-11-16 18:27:39] ----- SCD RESULT (18000 samples, 283.8s) -----
+[2026-11-16 18:27:39]   Precision 52.45 | Recall 47.83 | F1 (DTD) 50.04 | IoU (tampered) 38.06 | mIoU 68.68
+[2026-11-16 18:27:39]   Legacy per-image mean: F1 46.18 | IoU 38.05 | GPU 12.92 ms/img (batch 16)
+[2026-11-16 18:27:39] ================================================================================================
+[2026-11-16 18:27:39] Split             N       P       R      F1     IoU    mIoU   imgF1  imgIoU
+[2026-11-16 18:27:39] TestingSet    30000   61.49   52.94   56.90   57.43   78.41   53.97   47.23
+[2026-11-16 18:27:39] FCD            2000   62.49   45.79   52.85   27.40   61.76   48.00   40.21
+[2026-11-16 18:27:39] SCD           18000   52.45   47.83   50.04   38.06   68.68   46.18   38.05
+[2026-11-16 18:27:39] ================================================================================================
+[2026-11-16 18:27:39] Saved: D:\shivendra pratap singh\docroi_former\reports\dtd_protocol\20261116_181448_dtd_q75\summary.json
