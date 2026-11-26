@@ -55,9 +55,14 @@ rounds with DTD's per-image quality tables, minimum quality 75, all 50{,}000 tes
 fixed threshold 0.5). It reaches F1 = 78.1 / 81.5 / 72.3 and tampered-class IoU = 77.3 /
 59.0 / 60.3 on TestingSet / FCD / SCD. On the cross-domain FCD split it ties ADCD-Net and is
 within 0.1 F1 of DTD with two-thirds of DTD's parameters; on TestingSet and SCD it is 1--3 F1
-below both, and it is well below FFDN. Error analysis shows that the remaining gap comes almost
-entirely from edits covering less than 1\% of the image. We report an independent audit of the
-evaluation records and state which claims still require ablation.
+below both, and it is well below FFDN. Per-image analysis explains this pattern. The design
+targets structured documents in which a few content entities sit on blank paper and images are
+recompressed; accordingly the model is strongest on word-sized and larger edits (79--91 F1, with
+almost no missed images) and robust to repeated compression. Its deficit grows with the share of
+single-character edits (FCD 11\%, TestingSet 62\%, SCD 70\% of images; gap to DTD $-0.1$, $-1.1$,
+$-3.2$ F1), which we relate to the $16\times16$-pixel footprint of its cross-attention keys and to
+hard entity masking. We report an independent audit of the evaluation records and state which
+claims still require ablation.
 \end{abstract}
 
 % =====================================================================================
@@ -98,6 +103,17 @@ paper tokens out of the cross-attention keys. The forensic stream contains, besi
 Bayar~\cite{bayar} and SRM~\cite{srm} residuals, an exact quantised-DCT branch conditioned on
 the JPEG quantisation table. A progressive decoder recovers thin regions at full resolution
 with residual-guided edge refinement.
+
+\paragraph{Design use case.} The architecture was designed for structured documents such as
+identity and financial forms, in which a handful of content entities (text fields, a portrait,
+a machine-readable code, a seal) sit on large areas of blank paper, and in which the images that
+reach a verifier have been recompressed one or more times. Three assumptions follow from this
+use case and shape the design: forensic signal on blank paper is mostly acquisition noise and
+should be suppressed (N1); compression traces must be read from the coefficient lattice rather
+than from pixels (N2); and edited strokes are thin (N4). DocTamper shares the second and third
+properties, and partly the first: its documents (contracts, invoices, receipts) are denser in
+text, and most of its edits are single characters. Section~\ref{sec:discussion} shows that the
+model's strengths and weaknesses on DocTamper follow directly from these assumptions.
 
 \paragraph{Evaluation discipline.} Evaluation details change conclusions. An earlier model of
 ours, evaluated on \emph{uncompressed} test images with a per-image metric, appeared to exceed
@@ -666,6 +682,105 @@ about 4.7 and 5.4. Before the divergence the two runs tracked each other closely
 changing the learning trajectory.
 
 % =====================================================================================
+\section{Discussion: why the model performs where it does}\label{sec:discussion}
+
+This section explains the result pattern of Section~\ref{sec:results}. Statements marked
+\emph{Evidence} are measured from the 50{,}000 per-image records; statements marked
+\emph{Hypothesis} are our explanation and have not yet been tested by ablation
+(Section~\ref{sec:limits} lists the experiments that would test them).
+
+\subsection{Where it performs well, and why}
+
+\paragraph{Word-sized and larger edits, and the cross-domain FCD split.}
+\emph{Evidence.} On edits covering at least 1\% of the image, F1 is 90.6 on TestingSet, 83.1 on
+FCD and 79.1 on SCD, and only 1.0\%, 1.6\% and 1.2\% of these images receive no correctly detected
+pixel. FCD is the split with the fewest single-character edits (11\% of images below 1\% area),
+and it is exactly where \ours\ ties ADCD-Net and comes within 0.1 F1 of DTD.
+\emph{Hypothesis.} This is the regime the design was built for: an edited word or field is a
+content entity, the router routes attention to it, and its forensic evidence (residuals plus
+quantised DCT) is read from enough key tokens to be reliable. Suppressing the paper background
+(N1) should also help under domain shift, where background texture differs from training.
+
+\paragraph{Robustness to recompression.}
+\emph{Evidence.} From one to three JPEG rounds, F1 drops by only 5.3 / 2.8 / 2.9 on TestingSet /
+FCD / SCD. Our previous model, evaluated with the same code, scored 80.9 F1 on TestingSet without
+compression and 56.9 under the protocol, a loss of 24.0 points.
+\emph{Hypothesis.} The difference is mainly due to protocol-aligned, compression-aware training
+together with the exact quantised-DCT stream (N2), both direct consequences of the recompressed
+images of the design use case. The two models also differ in resolution, colour and attention
+normalisation, so this attribution needs the ablations of Section~\ref{sec:limits}.
+
+\paragraph{Against general image-forensics models.}
+\emph{Evidence.} \ours\ exceeds CAT-Net + CLTD by 6.0 / 7.4 / 5.3 F1 with 39\% of its parameters,
+and all earlier image-forensics baselines by more. \emph{Hypothesis.} Document-specific inductive
+biases (routing to content, thin-stroke decoding) and protocol-aligned training matter more on
+documents than generic manipulation cues learned from natural images.
+
+\subsection{Where it falls short, and why}
+
+\paragraph{Single-character edits.}
+\emph{Evidence.} Table~\ref{tab:gapshare} shows that the gap to DTD grows with the share of edits
+below 1\% of the image. On those edits F1 is 68--70 on every split, and 16.1\% of the
+small-edit images in TestingSet receive no correctly detected pixel (against 1.0\% for larger
+edits). The median small edit covers about 1{,}060 pixels on TestingSet, roughly a
+$33\times33$-pixel square, i.e.\ one or two characters.
+
+\begin{table}[!htbp]
+\centering
+\caption{Gap to DTD against the share of small edits. Small = tampered area below 1\% of the
+image. Miss rate = images with no correctly detected tampered pixel.}
+\label{tab:gapshare}
+\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+ & Small-edit & \multicolumn{2}{c}{F1} & \multicolumn{2}{c}{Miss rate} & F1 gap \\
+Split & share & small & larger & small & larger & to DTD \\
+\midrule
+FCD        & 11.2\% & 68.1 & 83.1 & 12.1\% & 1.6\% & $-0.1$ \\
+TestingSet & 61.8\% & 70.4 & 90.6 & 16.1\% & 1.0\% & $-1.1$ \\
+SCD        & 69.5\% & 69.0 & 79.1 & 10.0\% & 1.2\% & $-3.2$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\emph{Hypothesis 1: coarse forensic keys.} The cross-attention reads forensic evidence through key
+tokens that each cover at least $16\times16$ pixels: with spatial reduction, the key grid is
+$32\times32$ at stages 1--3 and $16\times16$ at stage 4 for a $512\times512$ input
+(Table~\ref{tab:shapes}). A median small edit therefore spans only about $2\times2$ key tokens,
+and its trace is averaged with the authentic strokes around it. The decoder does see
+full-resolution SRM residuals, but only through a gate conditioned on features that have
+already passed this coarse fusion. The spatial reduction was chosen to keep attention affordable
+at native resolution, which suits field- and word-level edits but not single glyphs.
+
+\emph{Hypothesis 2: hard entity masking.} The entity mask is an $\arg\max$ at stride 4. Where a
+small edited glyph or its neighbourhood is classified as paper, its keys are removed from the
+attention and its forensic features are attenuated to the floor $\alpha=0.15$. This choice comes
+straight from the use case, where suppressing blank-paper noise is the goal, but it can also
+remove the weak evidence that a single-character edit leaves.
+
+\paragraph{Boundary over-segmentation on FCD.}
+\emph{Evidence.} Pooled over all pixels, FCD precision is 68.5 against recall 81.0, and the model
+predicts 18\% more tampered pixels than exist; on TestingSet the two are balanced (86.6 / 87.8).
+FCD's edits are larger (3.6\% of the image on average against 1.2\%), so this over-segmentation
+costs 16 IoU points relative to DTD while leaving the per-image F1 tied.
+\emph{Hypothesis.} Around larger edits, the residual stream and the SRM edge gate respond to
+cross-domain background and edge texture that the relevance floor lets through; stronger
+boundary supervision or calibration on out-of-domain backgrounds should reduce it.
+
+\paragraph{The gap to FFDN.}
+\emph{Evidence.} FFDN trains for 100K iterations at batch 16 ($\approx$1.6M samples), close to our
+1.41M, with a ConvNeXtV2-B backbone and 140M parameters ($3.2\times$ ours).
+\emph{Hypothesis.} With comparable training budgets, the 8--11 F1 gap is more likely due to
+backbone capacity and FFDN's frequency-enhancement design than to training length.
+
+\subsection{What this implies}
+The analysis points to concrete, testable changes: denser forensic keys at the early stages
+(spatial-reduction ratio 1 at stages 1--2, or local windowed attention at full key resolution),
+a soft entity mask in place of the hard $\arg\max$, region-size-aware loss weighting for edits
+below 1\% of the image, and boundary-focused supervision for large cross-domain edits. Each
+can be evaluated with the same protocol and audit procedure used here.
+
+% =====================================================================================
 \section{Integrity and reproducibility}\label{sec:audit}
 
 \subsection{Rules enforced in code}
@@ -743,8 +858,10 @@ python evaluate_dtd_protocol.py --checkpoint <ckpt> --infer_size 0 \
 \begin{enumerate}
   \item \textbf{No component ablations.} N1, N2, N4 and N5 are supported only by the full-system
         result. The planned ablations retrain the same recipe with one change each: no routing
-        ($\rho\equiv1$, $m\equiv1$); no quantised-DCT stream, or no FiLM conditioning; plain
-        bilinear decoding from stride 4 instead of the PGU head; and $\lambda_{\mathrm{font}}=0$.
+        ($\rho\equiv1$, $m\equiv1$) and a soft instead of a hard entity mask (tests Hypothesis 2 of
+        Section~\ref{sec:discussion}); spatial-reduction ratio 1 at stages 1--2 (tests
+        Hypothesis 1); no quantised-DCT stream, or no FiLM conditioning; plain bilinear decoding
+        from stride 4 instead of the PGU head; and $\lambda_{\mathrm{font}}=0$.
   \item \textbf{Single run, single seed.} There are no error bars; the compared papers also report
         single runs. Repeating the final recipe with three seeds would bound the variance.
   \item \textbf{Re-implemented protocol.} The evaluator follows DTD's script step by step and uses
@@ -773,9 +890,12 @@ under the official DTD protocol, it reaches 78.1 / 81.5 / 72.3 F1 and 77.3 / 59.
 TestingSet / FCD / SCD with 43.9M parameters. It ties ADCD-Net and nearly matches DTD on the
 cross-domain FCD split and improves on our previous model by more than 20 F1 on every split, but
 it is not state of the art: it trails DTD and ADCD-Net by 1--3 F1 on TestingSet and SCD and FFDN by
-8--11. The error analysis points to two concrete targets, edits below 1\% of the image and
-boundary precision on large cross-domain edits, and the ablations listed above are needed before
-the individual components can be claimed as contributions.
+8--11. This pattern follows from the design use case: routing forensic evidence to content and
+reading it through spatially reduced keys works well for word-sized edits and recompressed
+images, but blurs single-character edits, whose share predicts the gap to DTD on each split. The
+discussion points to two concrete targets, edits below 1\% of the image and boundary precision on
+large cross-domain edits, and the ablations listed above are needed before the individual
+components can be claimed as contributions.
 
 % =====================================================================================
 \begin{thebibliography}{99}\small

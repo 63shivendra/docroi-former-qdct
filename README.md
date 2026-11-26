@@ -7,8 +7,10 @@ Final checkpoint: epoch 11. It was evaluated exactly once, on 2026-11-19, on all
 images.
 
 **Research paper:** [`paper/DocROI-Former-QDCT_paper.pdf`](paper/DocROI-Former-QDCT_paper.pdf)
-(LaTeX source beside it). It covers the motivation, method, experimental protocol, results
-(F1 and IoU), error analysis, an integrity audit of the evaluation, and limitations.
+(LaTeX source beside it). It covers the motivation and design use case, the full method, the
+experimental protocol, results (F1 and IoU), error analysis, a discussion of why the model
+performs well where it does and why it falls short elsewhere, an integrity audit of the
+evaluation, and limitations.
 
 The detailed technical specification (every module, equation and setting) is
 [`docs/docroi_former_qdct_spec.pdf`](docs/docroi_former_qdct_spec.pdf), with its LaTeX source
