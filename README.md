@@ -11,8 +11,8 @@ images.
 (F1 and IoU), error analysis, an integrity audit of the evaluation, and limitations.
 
 The detailed technical specification (every module, equation and setting) is
-[`docs/docroi_former_qdct_spec.tex`](docs/docroi_former_qdct_spec.tex). Compile it with
-`pdflatex`; the two figure PDFs in `docs/` must sit next to it.
+[`docs/docroi_former_qdct_spec.pdf`](docs/docroi_former_qdct_spec.pdf), with its LaTeX source
+beside it (compile with `pdflatex`; the two figure PDFs in `docs/` must sit next to it).
 
 | F1 (%), DTD protocol, min. quality 75 | Params | TestingSet | FCD | SCD | Mean |
 |---|---:|---:|---:|---:|---:|
@@ -305,7 +305,8 @@ python evaluate_dtd_protocol.py \
 ```
 
 **Figures:** `python scripts/plot_f1_iou_per_split.py` regenerates the three F1/IoU figures in
-`docs/` from the evaluation records.
+`docs/` from the evaluation records, and `python scripts/plot_f1_overview.py` regenerates
+`fig_f1_comparison` and `fig_params_vs_f1` from `docs/benchmark_numbers_verified.csv`.
 
 ---
 
@@ -320,6 +321,7 @@ train_academic.py                     protocol-aligned trainer (watchdog, step-e
 evaluate_dtd_protocol.py              official-protocol evaluator (summary.csv, SHA-256, per-image CSVs)
 scripts/wsl_train_academic.sh         WSL2 launcher with auto-resume
 scripts/plot_f1_iou_per_split.py      F1/IoU comparison figures per split
+scripts/plot_f1_overview.py           F1 overview and accuracy-vs-size figures
 paper/                                research paper (PDF + LaTeX source)
 docs/                                 technical specification (.tex), verified benchmark numbers, figures
 reports/dtd_protocol/                 official-protocol evaluation records

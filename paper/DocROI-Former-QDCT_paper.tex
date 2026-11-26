@@ -437,8 +437,9 @@ re-checked against its source.
         Swin-Uper, CAT-Net, CAT-Net + CLTD, DTD, all trained by DTD's authors under the
         protocol); ADCD-Net~\cite{adcd}, Table~1 (TruFor, PS-Net, ADCD-Net); FFDN~\cite{ffdn},
         Tables~1 and~5.
-  \item \textbf{IoU.} DTD~\cite{dtd}, Table~7, column $Q=75$, the only published IoU under this
-        protocol. ADCD-Net and FFDN do not report tampered-class IoU.
+  \item \textbf{IoU.} DTD~\cite{dtd}, Table~7, column $Q=75$ (all of DTD's baselines), and
+        FFDN~\cite{ffdn}, Table~1 (IoU for tampered regions, printed with two decimals).
+        ADCD-Net reports only P/R/F1, so it has no IoU entry.
 \end{itemize}
 \noindent\textbf{Inconsistencies in published numbers.} (i) ADCD-Net's Table~1 lists ``CAT-Net''
 at 72.1 / 74.1 / 67.0, which is exactly DTD's \emph{CAT-Net + CLTD} row; plain CAT-Net in DTD's
@@ -511,16 +512,17 @@ count published).}
 \end{figure}
 
 \subsection{IoU against published methods}
-Table~\ref{tab:iou} compares tampered-class IoU with the methods of DTD's Table~7. \ours\ is
-second on TestingSet (77.3, behind DTD's 83.0) and SCD (60.3, behind 69.0), and third on FCD
-(59.0, behind DTD's 75.0 and CAT-Net + CLTD's 60.0). The gap to DTD is larger in IoU than in F1,
-most visibly on FCD, where F1 ties DTD but IoU is 16.0 lower. Section~\ref{sec:analysis} traces
-this to false-positive pixels around larger edits.
+Table~\ref{tab:iou} compares tampered-class IoU with the methods of DTD's Table~7 and with FFDN.
+\ours\ is third on TestingSet (77.3, behind FFDN's 90 and DTD's 83.0) and SCD (60.3, behind 75
+and 69.0), and fourth on FCD (59.0, behind FFDN's 88, DTD's 75.0 and CAT-Net + CLTD's 60.0). The
+gap to DTD is larger in IoU than in F1, most visibly on FCD, where F1 ties DTD but IoU is 16.0
+lower. Section~\ref{sec:analysis} traces this to false-positive pixels around larger edits.
 
 \begin{table}[!htbp]
 \centering
 \caption{Tampered-class IoU (\%) under the DTD protocol ($Q=75$). Baselines: DTD~\cite{dtd}
-Table~7. ADCD-Net and FFDN publish no tampered-class IoU.}
+Table~7; FFDN~\cite{ffdn} Table~1 (two decimals in the original). FFDN's re-training of DTD under
+its own settings gives 84 / 79 / 68. ADCD-Net publishes no IoU.}
 \label{tab:iou}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
@@ -533,7 +535,8 @@ BEiT-Uper~\cite{beit,upernet}     & 59.0 & 35.0 & 34.0 & 42.7 \\
 Swin-Uper~\cite{swin,upernet}     & 70.0 & 41.0 & 51.0 & 54.0 \\
 CAT-Net~\cite{catnet}             & 74.0 & 42.0 & 55.0 & 57.0 \\
 CAT-Net + CLTD~\cite{catnet,dtd}  & 71.0 & 60.0 & 54.0 & 61.7 \\
-DTD~\cite{dtd}                    & \best{83.0} & \best{75.0} & \best{69.0} & \best{75.7} \\
+DTD~\cite{dtd}                    & 83.0 & 75.0 & 69.0 & 75.7 \\
+FFDN~\cite{ffdn}                  & \best{90} & \best{88} & \best{75} & \best{84.3} \\
 \midrule
 \textbf{\ours\ (ours)}            & 77.31 & 59.04 & 60.32 & 65.56 \\
 \bottomrule
